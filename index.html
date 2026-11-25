@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="国才的投资研究室：黄金研究、策略回测与资产管理">
+<title>国才的投资研究室 | INVESTMENT LAB</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-icon">G</span><div><strong>国才的投资研究室</strong><small>INVESTMENT LAB</small></div></div>
+  <div class="nav-title">研究工作台</div>
+  <nav id="nav"><button class="active" data-tab="overview">▦　市场总览</button><button data-tab="research">◈　黄金研究</button><button data-tab="backtest">≋　策略回测</button><button data-tab="portfolio">▤　资产组合</button><button data-tab="sources">◉　数据与开源</button></nav>
+  <div class="sidebar-footer"><span class="tag"><i></i> 私人研究空间</span><p>合理配置 · 独立思考<br>不提供自动交易服务</p></div>
+</aside>
+<main>
+<header><div><div class="eyebrow" id="date">PERSONAL INVESTMENT RESEARCH</div><h1 id="heading">市场总览</h1><p id="subheading">关注趋势、理解驱动因素、管理风险。</p></div><button class="primary" id="refresh">↻ 刷新行情</button></header>
+<section id="overview" class="page">
+  <div id="network" class="notice">正在请求公开行情…</div>
+  <div class="metric-grid">
+    <article class="card metric gold"><span>国际现货黄金 · XAU/USD</span><strong id="xau">—</strong><small id="xau-note">美元 / 盎司</small><div class="metric-line"></div></article>
+    <article class="card metric"><span>人民币折算金价</span><strong id="cny">—</strong><small>元 / 克 · 汇率参考折算</small></article>
+    <article class="card metric"><span>上金所 Au99.99</span><strong>760.80</strong><small>2026-11-25 延时快照 · 元/克</small></article>
+    <article class="card metric"><span>美元兑人民币</span><strong id="fx">—</strong><small id="fx-note">USD/CNY · 官方参考汇率</small></article>
+  </div>
+  <div class="layout">
+    <article class="card chart-card"><div class="card-head"><div><h2>国内现货黄金走势</h2><p>2026-11-11 至 2026-11-25 · 历史参考价，非实时</p></div><span class="pill">历史快照</span></div><canvas id="goldchart" height="240"></canvas><p class="footnote">数据：<a href="https://www.jinjia68.com/gold-price/cau/2026-11-25" target="_blank" rel="noopener">金价68</a>，仅用于演示趋势和回测；上金所快照来自<a href="https://www.sge.com.cn/h5_sjzx/yshq" target="_blank" rel="noopener">上海黄金交易所</a>。数据可能不同步。</p></article>
+    <article class="card"><div class="card-head"><div><h2>宏观观察</h2><p>长期持有者需要关注的变量</p></div></div><div class="factor"><span class="dot warm"></span><div><b>实际利率</b><small>利率上升可能增加持有黄金的机会成本。</small></div><a href="https://fred.stlouisfed.org/series/DFII10" target="_blank">查看</a></div><div class="factor"><span class="dot blue"></span><div><b>美元走势</b><small>美元强弱影响美元计价黄金；人民币收益还涉及汇率。</small></div><a href="https://fred.stlouisfed.org/series/DTWEXBGS" target="_blank">查看</a></div><div class="factor"><span class="dot green"></span><div><b>央行购买与黄金ETF</b><small>2026Q3：央行净增持 321 吨，黄金ETF净流入 211 吨。</small></div><a href="https://www.gold.org/news-and-events/press-releases/central-bank-buying-and-etf-inflows-support-gold-demand-q3" target="_blank">原文</a></div><button class="ghost full" data-go="research">进入黄金研究</button></article>
+  </div>
+  <div class="layout equal">
+    <article class="card"><div class="card-head"><h2>其他免密钥行情</h2><span class="pill">公开 API</span></div><div class="mini-row"><span>白银 · XAG/USD</span><b id="xag">—</b></div><div class="mini-row"><span>比特币 · BTC/USD</span><b id="btc">—</b></div><p class="footnote">A股与美股研究：<a href="https://www.sse.com.cn/market/" target="_blank">上交所</a> · <a href="https://www.nasdaq.com/market-activity" target="_blank">Nasdaq</a>，目前未接入实时证券行情。</p></article>
+    <article class="card"><div class="card-head"><h2>个人投资流程</h2></div><div class="steps"><span>01 研究证据</span><span>02 比较策略</span><span>03 管理风险</span></div><p>先确认投资期限、备用金与最大可接受亏损，再决定仓位。市场价格是输入，不是买卖指令。</p><button class="ghost full" data-go="backtest">比较建仓策略</button></article>
+  </div>
+</section>
+<section id="research" class="page hidden">
+  <div class="notice">规则辅助分析 · 按你输入的情景生成多视角报告；未接入 TradingAgents 或第三方大模型，不会冒充 AI 实时研判。</div>
+  <div class="layout">
+    <article class="card"><div class="card-head"><div><h2>研究假设</h2><p>设定你当前对宏观环境的判断</p></div><span class="pill">情景分析</span></div>
+      <div class="form-grid"><label>投资期限<select id="horizon"><option value="long">5 年以上</option><option value="mid" selected>3–5 年</option><option value="short">1 年以内</option></select></label><label>美元趋势<select id="dollar"><option value="unknown">未知</option><option value="up">走强</option><option value="down">走弱</option><option value="flat">震荡</option></select></label><label>实际利率趋势<select id="rates"><option value="unknown">未知</option><option value="up">上升</option><option value="down">下降</option><option value="flat">稳定</option></select></label><label>央行购金趋势<select id="central"><option value="up" selected>保持强劲（Q3报告）</option><option value="down">减弱</option><option value="unknown">未知</option></select></label><label>计划黄金仓位 (%)<input id="weight" type="number" min="0" max="100" value="10"></label><label>可接受组合回撤 (%)<input id="tolerance" type="number" min="0" max="100" value="10"></label></div><label>补充观察 <textarea id="notes" placeholder="例如：预计明年降息、最近金价下跌，考虑未来三年…"></textarea></label><button class="primary full" id="analyze">生成研究报告</button><button class="ghost full" id="copyPrompt">复制深度 AI 投研提示词</button><p class="footnote" id="copyFeedback">可将提示词粘贴到 ChatGPT，继续核验最新数据和多空论证，无需额外 API。</p></article>
+    <article class="card report"><div class="card-head"><div><h2>多视角研究报告</h2><p id="reportTime">等待生成报告</p></div><span class="pill">非交易指令</span></div><div id="report"></div></article>
+  </div>
+  <article class="card"><div class="card-head"><div><h2>研究日志</h2><p>记录每次情景分析，复盘自己的判断。</p></div><button class="ghost" id="exportReports">导出日志</button></div><div id="reports"></div></article>
+</section>
+<section id="backtest" class="page hidden">
+  <div class="notice">默认使用 11 个交易日参考样本，仅用于验证计算。长期策略请导入完整的真实历史价格，不可将短样本表现外推。</div>
+  <div class="layout"><article class="card"><div class="card-head"><div><h2>策略参数</h2><p>同样总预算下比较买入节奏</p></div></div><div class="form-grid"><label>计划预算（元）<input id="budget" type="number" min="1" value="10000"></label><label>分批次数<input id="parts" type="number" min="2" value="4"></label><label>单次交易费用 (%)<input id="fee" type="number" min="0" max="20" step=".01" value=".1"></label><label>数据文件（CSV）<input id="csv" type="file" accept=".csv,text/csv"></label></div><p id="dataStatus" class="footnote">当前：黄金历史参考价 · 11个交易日</p><a id="downloadSample" href="#">下载 CSV 格式示例</a><p class="footnote">支持 date / 日期，close / 收盘价 / price 列；请确保日期唯一、价格正数、币种一致。</p><button class="primary full" id="runTest">运行回测</button></article><article class="card"><div class="card-head"><div><h2>回测结果</h2><p>包含未投入现金，统一以总预算衡量收益。</p></div></div><div class="table-wrap"><table><thead><tr><th>策略</th><th>期末资产</th><th>收益率</th><th>最大回撤</th></tr></thead><tbody id="results"></tbody></table></div><p class="footnote">无分红、无利息，假设按收盘价成交，不计税费及滑点（除输入手续费）。</p></article></div>
+  <article class="card chart-card"><div class="card-head"><h2>策略资产曲线</h2><div class="legend"><span><i style="background:#d8b25c"></i>一次性</span><span><i style="background:#61caa0"></i>等额分批</span></div></div><canvas id="testchart" height="250"></canvas></article>
+</section>
+<section id="portfolio" class="page hidden">
+  <div class="notice">记录仅保存在本浏览器，可通过导出、导入转移到其他设备；不读取、不连接交易账户。</div>
+  <div class="metric-grid three"><article class="card metric"><span>总资产市值</span><strong id="marketValue">¥0</strong></article><article class="card metric"><span>累计浮动盈亏</span><strong id="profitValue">¥0</strong></article><article class="card metric gold"><span>黄金配置比重</span><strong id="goldWeight">0%</strong></article></div>
+  <div class="layout"><article class="card"><div class="card-head"><h2>添加资产</h2></div><form id="holdingForm"><div class="form-grid"><label>资产名称<input id="hName" required placeholder="黄金ETF / 现金 / 股票"></label><label>类别<select id="hType"><option value="gold">黄金</option><option value="stock">股票/基金</option><option value="bond">债券</option><option value="cash">现金</option><option value="other">其他</option></select></label><label>持有数量<input id="hQty" type="number" min=".000001" step="any" value="1" required></label><label>每单位成本 (元)<input id="hCost" type="number" min="0" step="any" required></label><label>每单位现价 (元)<input id="hPrice" type="number" min="0" step="any" required></label></div><button class="primary full" type="submit">添加持仓</button></form></article><article class="card"><div class="card-head"><h2>资产分布</h2></div><div id="allocation"></div><p class="footnote">配置比例按手动录入的最新价格计算。可随时编辑价格。</p></article></div>
+  <article class="card"><div class="card-head"><div><h2>我的持仓</h2><p>手动更新数量、成本、现价</p></div><div class="actions"><button class="ghost" id="exportHoldings">导出</button><label class="ghost file-btn">导入<input type="file" id="importHoldings" accept="application/json,.json"></label></div></div><div class="table-wrap"><table><thead><tr><th>资产</th><th>数量</th><th>成本</th><th>现价</th><th>市值</th><th>盈亏</th><th>操作</th></tr></thead><tbody id="holdingsRows"></tbody></table></div></article>
+</section>
+<section id="sources" class="page hidden"><div class="notice">当前网页是无需额外 API Key 的第一版。下列项目作为架构参考或数据导入来源，尚未在服务器直接运行。</div><div class="source-grid">
+  <article class="card"><span class="pill">实时行情 · 已接入</span><h2>Gold API</h2><p>公开黄金、白银、比特币报价，请求失败时显示不可用。</p><a href="https://gold-api.com/docs" target="_blank">接口说明</a></article>
+  <article class="card"><span class="pill">参考汇率 · 已接入</span><h2>Frankfurter</h2><p>免费公开汇率服务；非实时外汇报价。</p><a href="https://frankfurter.dev/" target="_blank">接口说明</a></article>
+  <article class="card"><span class="pill neutral">研究数据 · CSV 导入</span><h2>AKShare / OpenBB</h2><p>支持将这两个项目导出的日期、收盘价数据 CSV 导入回测。Python 数据服务未部署。</p><a href="https://github.com/akfamily/akshare" target="_blank">AKShare</a> <a href="https://github.com/openbq-org/OpenBB" target="_blank">OpenBB</a></article>
+  <article class="card"><span class="pill neutral">研究框架 · 参考</span><h2>TradingAgents</h2><p>借鉴多空分析、宏观分析、风险评审结构；当前为规则分析和 AI 提示词交接。</p><a href="https://github.com/TauricResearch/TradingAgents" target="_blank">开源仓库</a></article>
+  <article class="card"><span class="pill neutral">回测 · 参考</span><h2>Qlib</h2><p>可作为后续接入更专业的数据研究与量化分析框架。</p><a href="https://github.com/microsoft/qlib" target="_blank">开源仓库</a></article>
+  <article class="card"><span class="pill neutral">资产管理 · 参考</span><h2>Wealthfolio</h2><p>借鉴本地优先的组合管理思想，当前使用浏览器本地记录。</p><a href="https://github.com/wealthfolio/wealthfolio" target="_blank">开源仓库</a></article>
+</div></section>
+<footer>INVESTMENT LAB · 国才的私人研究室 <span>投资有风险，数据和分析仅供研究参考。</span></footer>
+</main></div>
+<script src="app.js"></script>
+</body>
+</html>
